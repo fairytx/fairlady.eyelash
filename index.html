@@ -22,7 +22,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -31,6 +30,10 @@
     overflow-x: hidden;
   }
 
+  /* html{
+    scroll-behavior: smooth;
+  } */
+  
   /* Texture overlay */
   body::before {
     content: '';
@@ -117,6 +120,7 @@
     justify-content: center;
     gap: 0;
     padding: 0 20px;
+    flex-wrap: wrap;
   }
 
   .tab-btn {
@@ -454,6 +458,10 @@
     letter-spacing: 0.2em;
     color: var(--gold-dim);
   }
+  footer .handle a{
+    text-decoration:none;
+    color: var(--gold-dim);
+  }
 
   .designer-tag {
     font-size: 10px;
@@ -476,6 +484,27 @@
     margin-left: 8px;
     text-transform: uppercase;
   }
+  .booking-btn{
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 32px auto 8px;
+    padding: 16px 24px;
+    background: linear-gradient(135deg,var(--gold) 0%,var(--gold-dim) 100%);
+    color: var(--text);
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Noto Serif TC',serif;
+    font-size: 15px;
+    letter-spacing: .2em;
+    border-radius: 50px;
+    box-shadow: 0 6px 24px rgba(92,61,46,.3);
+    transition: background .3s;
+  }
+  .booking-btn:hover{
+    background: linear-gradient(135deg,var(--gold-dim) 0%,var(--bg3) 100%);
+  }
+  
 </style>
 </head>
 <body>
@@ -488,12 +517,12 @@
 </header>
 
 <nav>
-  <button class="tab-btn active" onclick="showTab('basic')">基礎款式</button>
-  <button class="tab-btn" onclick="showTab('advanced')">進階款式</button>
-  <button class="tab-btn" onclick="showTab('upgrade')">升級項目</button>
+  <button class="tab-btn active" onclick="showTab('basic')">睫毛嫁接</button>
+  <!-- <button class="tab-btn" onclick="showTab('advanced')">進階款式</button> -->
+  <!-- <button class="tab-btn" onclick="showTab('upgrade')">升級項目</button> -->
+  <button class="tab-btn" onclick="showTab('lashlift')">睫毛管理</button>
   <button class="tab-btn" onclick="showTab('remove')">卸除</button>
   <button class="tab-btn" onclick="showTab('tattoo')">紋繡</button>
-  <button class="tab-btn" onclick="showTab('lashlift')">睫毛管理</button>
   <button class="tab-btn" onclick="showTab('member')">儲值會員</button>
 </nav>
 
@@ -561,6 +590,108 @@
         <div class="item-desc">需使用睫毛雨衣，是較需要整理的睫毛款式</div>
       </div>
     </div>
+
+
+    <div class="section-header">
+      <div class="section-label">Advanced Style</div>
+      <h2 class="section-title">進階款式</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="advanced-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          狐系輕漫畫
+          <span class="item-price">$1,800</span>
+        </div>
+        <div class="item-desc">使用LD/LC/LB/LJ等L系列毛款搭建塔尖，短尺寸穿插，需使用睫毛雨衣整理</div>
+      </div>
+    </div>
+
+    <div class="advanced-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          清霧冷感系列
+          <span class="item-price">$1,800</span>
+        </div>
+        <div class="item-desc">使用UC/UB/UJ等U系列毛款搭建塔尖，可選擇搭建塔尖/齊長排列嫁接
+        </div>
+      </div>
+    </div>
+
+    <div class="advanced-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          仿真小絨花
+          <span class="item-price">$1,800</span>
+        </div>
+        <div class="item-desc">一次夾取1-3根假睫毛嫁接，製造媽生絨毛感
+        </div>
+      </div>
+    </div>
+
+    <div class="advanced-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          狐系野生
+          <span class="item-price">$1,800</span>
+        </div>
+        <div class="item-desc">使用LD/LC/LB/LJ等L系列毛款，齊長排列嫁接
+        </div>
+      </div>
+    </div>
+
+    <div class="advanced-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          帶圖客製款
+          <span class="item-price">$2,000</span>
+        </div>
+        <div class="item-desc">小紅書款、所有款式皆可傳圖報價</div>
+      </div>
+    </div>
+    <div class="section-header">
+      <div class="section-label">Add-on</div>
+      <h2 class="section-title">升級項目</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker green"></div>
+      <div class="item-body">
+        <div class="item-name">
+          下睫毛
+          <span class="item-price">$300/400/500</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker green"></div>
+      <div class="item-body">
+        <div class="item-name">
+          款式加濃
+          <span class="item-price">$300</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker green"></div>
+      <div class="item-body">
+        <div class="item-name">
+          升級 0.05 輕柔毛款
+          <span class="item-price">$200</span>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 
   <!-- ── ADVANCED ── -->
@@ -669,6 +800,47 @@
     </div>
   </div>
 
+  <!-- ── LASHLIFT ── -->
+  <div id="panel-lashlift" class="panel">
+    <div class="section-header">
+      <div class="section-label">Lash Lift</div>
+      <h2 class="section-title">睫毛管理</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          睫毛管理
+          <span class="item-price">$1,500</span>
+        </div>
+        <div class="item-desc">讓原生睫毛更整齊且自然有型並且矯正毛流，適合原生睫毛下垂嚴重者、或是喜歡刷睫毛膏的人</div>
+      </div>
+    </div>
+    
+    <div class="price-item">
+      <div class="item-marker green"></div>
+      <div class="item-body">
+        <div class="item-name">
+          &Healthy日式翹睫
+          <span class="item-price">$1,000</span>
+        </div>
+        <div class="item-desc">先嫁接後塑型技法</div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker purple"></div>
+      <div class="item-body">
+        <div class="item-name">
+          野生雕眉
+          <span class="item-price">$1,000</span>
+        </div>
+        <div class="item-desc">讓眉毛毛流更有型，歐美系濃眉必備</div>
+      </div>
+    </div>
+  </div>
 
   <!-- ── REMOVE ── -->
   <div id="panel-remove" class="panel">
@@ -745,47 +917,6 @@
   </div>
 
 
-  <!-- ── LASHLIFT ── -->
-  <div id="panel-lashlift" class="panel">
-    <div class="section-header">
-      <div class="section-label">Lash Lift</div>
-      <h2 class="section-title">睫毛管理</h2>
-      <div class="section-divider"></div>
-    </div>
-
-    <div class="price-item">
-      <div class="item-marker gold"></div>
-      <div class="item-body">
-        <div class="item-name">
-          睫毛管理
-          <span class="item-price">$1,500</span>
-        </div>
-        <div class="item-desc">讓原生睫毛更整齊且自然有型並且矯正毛流，適合原生睫毛下垂嚴重者、或是喜歡刷睫毛膏的人</div>
-      </div>
-    </div>
-    
-    <div class="price-item">
-      <div class="item-marker green"></div>
-      <div class="item-body">
-        <div class="item-name">
-          &Healthy日式翹睫
-          <span class="item-price">$1,000</span>
-        </div>
-        <div class="item-desc">先嫁接後塑型技法</div>
-      </div>
-    </div>
-
-    <div class="price-item">
-      <div class="item-marker purple"></div>
-      <div class="item-body">
-        <div class="item-name">
-          野生雕眉
-          <span class="item-price">$1,000</span>
-        </div>
-        <div class="item-desc">讓眉毛毛流更有型，歐美系濃眉必備</div>
-      </div>
-    </div>
-  </div>
 
   <!-- ── MEMBER ── -->
   <div id="panel-member" class="panel">
@@ -822,10 +953,12 @@
     </div>
   </div>
 
+
+  <a class="booking-btn" href="https://go.hotcake.app/g/FYK9B6" target="_blank">✦ 立即預約 ✦</a>
 </main>
 
 <footer>
-  <div class="handle">@fairlady.eyelash</div>
+  <div class="handle"><a href="https://www.instagram.com/fairlady.eyelash/">📷IG:fairlady.eyelash</a></div>
   <div class="designer-tag">designer Tienhsin</div>
 </footer>
 
