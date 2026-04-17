@@ -303,8 +303,30 @@
   }
 
   /* ─── ADVANCED ITEM ─── */
-  .advanced-item {
+  /*.advanced-item {
     padding: 28px 0 20px;
+  }
+
+  .advanced-item:hover {
+    padding: 28px 0 20px;
+  }*/
+
+  
+  .advanced-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+    gap: 16px;
+    transition: background 0.2s;
+  }
+
+  .advanced-item:hover {
+    background: rgba(201,169,110,0.03);
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 2px;
   }
 
   .advanced-name {
@@ -467,9 +489,11 @@
 
 <nav>
   <button class="tab-btn active" onclick="showTab('basic')">基礎款式</button>
-  <button class="tab-btn" onclick="showTab('upgrade')">升級項目</button>
   <button class="tab-btn" onclick="showTab('advanced')">進階款式</button>
+  <button class="tab-btn" onclick="showTab('upgrade')">升級項目</button>
   <button class="tab-btn" onclick="showTab('remove')">卸除</button>
+  <button class="tab-btn" onclick="showTab('tattoo')">紋繡</button>
+  <button class="tab-btn" onclick="showTab('lashlift')">睫毛管理</button>
   <button class="tab-btn" onclick="showTab('member')">儲值會員</button>
 </nav>
 
@@ -498,10 +522,21 @@
       <div class="item-marker gold"></div>
       <div class="item-body">
         <div class="item-name">
-          睫毛膏款
+          網美睫毛膏款
           <span class="item-price">$1,500</span>
         </div>
         <div class="item-desc">有微微妝感，只需梳理好整理的款式</div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          輕透少女
+          <span class="item-price">$1,800</span>
+        </div>
+        <div class="item-desc">長短交錯嫁接，主體使用單根排列，濃度與日式單根相似</div>
       </div>
     </div>
 
@@ -528,6 +563,73 @@
     </div>
   </div>
 
+  <!-- ── ADVANCED ── -->
+  <div id="panel-advanced" class="panel">
+    <div class="section-header">
+      <div class="section-label">Advanced Style</div>
+      <h2 class="section-title">進階款式</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="advanced-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          狐系輕漫畫
+          <span class="item-price">$1,800</span>
+        </div>
+        <div class="item-desc">使用LD/LC/LB/LJ等L系列毛款搭建塔尖，短尺寸穿插，需使用睫毛雨衣整理</div>
+      </div>
+    </div>
+
+    <div class="advanced-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          清霧冷感系列
+          <span class="item-price">$1,800</span>
+        </div>
+        <div class="item-desc">使用UC/UB/UJ等U系列毛款搭建塔尖，可選擇搭建塔尖/齊長排列嫁接
+        </div>
+      </div>
+    </div>
+
+    <div class="advanced-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          仿真小絨花
+          <span class="item-price">$1,800</span>
+        </div>
+        <div class="item-desc">一次夾取1-3根假睫毛嫁接，製造媽生絨毛感
+        </div>
+      </div>
+    </div>
+
+    <div class="advanced-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          狐系野生
+          <span class="item-price">$1,800</span>
+        </div>
+        <div class="item-desc">使用LD/LC/LB/LJ等L系列毛款，齊長排列嫁接
+        </div>
+      </div>
+    </div>
+
+    <div class="advanced-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          帶圖客製款
+          <span class="item-price">$2,000</span>
+        </div>
+        <div class="item-desc">小紅書款、所有款式皆可傳圖報價</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── UPGRADE ── -->
   <div id="panel-upgrade" class="panel">
     <div class="section-header">
@@ -541,7 +643,7 @@
       <div class="item-body">
         <div class="item-name">
           下睫毛
-          <span class="item-price">$300</span>
+          <span class="item-price">$300/400/500</span>
         </div>
       </div>
     </div>
@@ -567,27 +669,6 @@
     </div>
   </div>
 
-  <!-- ── ADVANCED ── -->
-  <div id="panel-advanced" class="panel">
-    <div class="section-header">
-      <div class="section-label">Advanced Style</div>
-      <h2 class="section-title">進階款式</h2>
-      <div class="section-divider"></div>
-    </div>
-
-    <div class="advanced-item">
-      <div style="display:flex;gap:14px;align-items:flex-start">
-        <div class="item-marker gold" style="margin-top:5px"></div>
-        <div style="flex:1">
-          <div class="advanced-name">
-            客製款
-            <span class="item-price" style="font-size:24px">$2,000</span>
-          </div>
-          <div class="advanced-sub">狐系、落尾款、嬰兒鷺系列</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ── REMOVE ── -->
   <div id="panel-remove" class="panel">
@@ -618,6 +699,92 @@
         <div class="item-desc">非本店嫁接之睫毛卸除服務</div>
       </div>
     </div>
+
+    <div class="price-item">
+      <div class="item-marker purple"></div>
+      <div class="item-body">
+        <div class="item-name">
+          單卸睫不續接
+          <span class="item-price">$400</span>
+        </div>
+        <div class="item-desc">單獨睫毛卸除服務</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── TATTOO ── -->
+  <div id="panel-tattoo" class="panel">
+    <div class="section-header">
+      <div class="section-label">Lip Tattoo</div>
+      <h2 class="section-title">紋繡</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          高級訂製霧唇
+          <span class="item-price">$6,600</span>
+        </div>
+        <div class="item-desc">頂級客製化霧感唇色，依膚色與唇形量身設計</div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker purple"></div>
+      <div class="item-body">
+        <div class="item-name">
+          淡色
+          <span class="item-price">$1,500</span>
+        </div>
+        <div class="item-desc">針對原有唇色進行淡化處理，如原本唇色較深建議做3次以上再上色</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── LASHLIFT ── -->
+  <div id="panel-lashlift" class="panel">
+    <div class="section-header">
+      <div class="section-label">Lash Lift</div>
+      <h2 class="section-title">睫毛管理</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          睫毛管理
+          <span class="item-price">$1,500</span>
+        </div>
+        <div class="item-desc">讓原生睫毛更整齊且自然有型並且矯正毛流，適合原生睫毛下垂嚴重者、或是喜歡刷睫毛膏的人</div>
+      </div>
+    </div>
+    
+    <div class="price-item">
+      <div class="item-marker green"></div>
+      <div class="item-body">
+        <div class="item-name">
+          &Healthy日式翹睫
+          <span class="item-price">$1,000</span>
+        </div>
+        <div class="item-desc">先嫁接後塑型技法</div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker purple"></div>
+      <div class="item-body">
+        <div class="item-name">
+          野生雕眉
+          <span class="item-price">$1,000</span>
+        </div>
+        <div class="item-desc">讓眉毛毛流更有型，歐美系濃眉必備</div>
+      </div>
+    </div>
   </div>
 
   <!-- ── MEMBER ── -->
@@ -632,7 +799,7 @@
       <div class="member-amount"><span>儲值</span>$5,000</div>
       <div class="member-bonus">
         <div class="bonus-label">贈送</div>
-        <div class="bonus-amount">+ $300</div>
+        <div class="bonus-amount">+ $1,000</div>
       </div>
     </div>
 
@@ -640,7 +807,7 @@
       <div class="member-amount"><span>儲值</span>$10,000</div>
       <div class="member-bonus">
         <div class="bonus-label">贈送</div>
-        <div class="bonus-amount">+ $800</div>
+        <div class="bonus-amount">+ $3,000</div>
       </div>
     </div>
 
