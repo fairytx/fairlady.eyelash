@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fairlady Eyelash Extension</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1814;
+    --bg2: #221f1b;
+    --bg3: #2a2620;
+    --gold: #c9a96e;
+    --gold-light: #e8d5a3;
+    --gold-dim: #8a6e42;
+    --text: #e8e0d0;
+    --text-muted: #9a8e7e;
+    --accent: #7a8a6a;
+    --accent2: #6b7a5a;
+    --divider: rgba(201,169,110,0.25);
+    --tag-purple: #8b7a9a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Serif TC', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* Bamboo decorative bg */
+  body::after {
+    content: '';
+    position: fixed;
+    right: -60px;
+    top: 0;
+    width: 320px;
+    height: 100%;
+    background: repeating-linear-gradient(
+      175deg,
+      transparent 0px, transparent 18px,
+      rgba(201,169,110,0.03) 18px, rgba(201,169,110,0.03) 20px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: relative;
+    padding: 60px 40px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--divider);
+    background: linear-gradient(180deg, rgba(201,169,110,0.05) 0%, transparent 100%);
+    z-index: 1;
+  }
+
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(11px, 1.5vw, 13px);
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    font-style: italic;
+    margin-bottom: 10px;
+    text-transform: lowercase;
+  }
+
+  .main-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .sub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    font-style: italic;
+  }
+
+  .gold-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 20px auto 0;
+  }
+
+  /* ─── NAV TABS ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(26,24,20,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--divider);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 0 20px;
+  }
+
+  .tab-btn {
+    position: relative;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    padding: 18px 28px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+
+  .tab-btn.active {
+    color: var(--gold-light);
+  }
+
+  .tab-btn.active::after {
+    width: 60%;
+  }
+
+  .tab-btn:hover {
+    color: var(--text);
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px 24px 80px;
+  }
+
+  /* ─── PANELS ─── */
+  .panel {
+    display: none;
+    animation: fadeUp 0.4s ease;
+  }
+
+  .panel.active {
+    display: block;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTION HEADER ─── */
+  .section-header {
+    padding: 44px 0 20px;
+    text-align: center;
+  }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 400;
+    color: var(--gold-light);
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+  }
+
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--divider), var(--gold-dim), var(--divider), transparent);
+    margin-bottom: 8px;
+  }
+
+  /* ─── PRICE ITEM ─── */
+  .price-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+    gap: 16px;
+    transition: background 0.2s;
+  }
+
+  .price-item:hover {
+    background: rgba(201,169,110,0.03);
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 2px;
+  }
+
+  .item-marker {
+    width: 3px;
+    min-height: 28px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .item-marker.gold { background: var(--gold); }
+  .item-marker.purple { background: var(--tag-purple); }
+  .item-marker.green { background: var(--accent); }
+
+  .item-body {
+    flex: 1;
+  }
+
+  .item-name {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .item-price.free-tag {
+    color: var(--accent);
+    font-size: 16px;
+    letter-spacing: 0.15em;
+    font-style: italic;
+  }
+
+  .item-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+  }
+
+  /* ─── TWO COLUMN ─── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 40px;
+  }
+
+  @media (max-width: 540px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  .col-header {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    padding: 28px 0 8px;
+    border-bottom: 1px solid rgba(201,169,110,0.15);
+    margin-bottom: 4px;
+  }
+
+  /* ─── ADVANCED ITEM ─── */
+  .advanced-item {
+    padding: 28px 0 20px;
+  }
+
+  .advanced-name {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .advanced-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── MEMBER PANEL ─── */
+  .member-card {
+    background: linear-gradient(135deg, rgba(201,169,110,0.08), rgba(201,169,110,0.03));
+    border: 1px solid rgba(201,169,110,0.2);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.3s, transform 0.2s;
+    cursor: default;
+  }
+
+  .member-card:hover {
+    border-color: rgba(201,169,110,0.45);
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(201,169,110,0.12), rgba(201,169,110,0.05));
+  }
+
+  .member-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 4vw, 32px);
+    color: var(--gold-light);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  .member-amount span {
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-right: 4px;
+  }
+
+  .member-bonus {
+    text-align: right;
+  }
+
+  .bonus-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .bonus-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3vw, 28px);
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .member-note {
+    background: rgba(0,0,0,0.2);
+    border-left: 2px solid var(--gold-dim);
+    padding: 20px 24px;
+    margin: 24px 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .note-title {
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: var(--gold-dim);
+    margin-bottom: 12px;
+  }
+
+  .note-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .note-list li {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .note-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--gold-dim);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 28px 20px 40px;
+    border-top: 1px solid var(--divider);
+  }
+
+  footer .handle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+  }
+
+  .designer-tag {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: rgba(201,169,110,0.3);
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* small pill for "new" or labels */
+  .pill {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: rgba(201,169,110,0.12);
+    color: var(--gold-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-name">@fairlady.eyelash</div>
+  <h1 class="main-title">Eyelash Extension</h1>
+  <p class="sub-title">designer Tienhsin</p>
+  <div class="gold-line"></div>
+</header>
+
+<nav>
+  <button class="tab-btn active" onclick="showTab('basic')">基礎款式</button>
+  <button class="tab-btn" onclick="showTab('upgrade')">升級項目</button>
+  <button class="tab-btn" onclick="showTab('advanced')">進階款式</button>
+  <button class="tab-btn" onclick="showTab('remove')">卸除</button>
+  <button class="tab-btn" onclick="showTab('member')">儲值會員</button>
+</nav>
+
+<main>
+
+  <!-- ── BASIC ── -->
+  <div id="panel-basic" class="panel active">
+    <div class="section-header">
+      <div class="section-label">Basic Style</div>
+      <h2 class="section-title">基礎款式</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          日式單根
+          <span class="item-price">$1,200</span>
+        </div>
+        <div class="item-desc">本店全面採用扁毛設計，提升舒適度與持久維持度</div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          睫毛膏款
+          <span class="item-price">$1,500</span>
+        </div>
+        <div class="item-desc">有微微妝感，只需梳理好整理的款式</div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          元氣少女
+          <span class="item-price">$1,800</span>
+        </div>
+        <div class="item-desc">長短交錯嫁接，視覺上濃度比泰式稍淡一些</div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker gold"></div>
+      <div class="item-body">
+        <div class="item-name">
+          泰式淡顏
+          <span class="item-price">$1,800</span>
+        </div>
+        <div class="item-desc">需使用睫毛雨衣，是較需要整理的睫毛款式</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── UPGRADE ── -->
+  <div id="panel-upgrade" class="panel">
+    <div class="section-header">
+      <div class="section-label">Add-on</div>
+      <h2 class="section-title">升級項目</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker green"></div>
+      <div class="item-body">
+        <div class="item-name">
+          下睫毛
+          <span class="item-price">$300</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker green"></div>
+      <div class="item-body">
+        <div class="item-name">
+          款式加濃
+          <span class="item-price">$300</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker green"></div>
+      <div class="item-body">
+        <div class="item-name">
+          升級 0.05 輕柔毛款
+          <span class="item-price">$200</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ADVANCED ── -->
+  <div id="panel-advanced" class="panel">
+    <div class="section-header">
+      <div class="section-label">Advanced Style</div>
+      <h2 class="section-title">進階款式</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="advanced-item">
+      <div style="display:flex;gap:14px;align-items:flex-start">
+        <div class="item-marker gold" style="margin-top:5px"></div>
+        <div style="flex:1">
+          <div class="advanced-name">
+            客製款
+            <span class="item-price" style="font-size:24px">$2,000</span>
+          </div>
+          <div class="advanced-sub">狐系、落尾款、嬰兒鷺系列</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── REMOVE ── -->
+  <div id="panel-remove" class="panel">
+    <div class="section-header">
+      <div class="section-label">Removal</div>
+      <h2 class="section-title">卸除</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker purple"></div>
+      <div class="item-body">
+        <div class="item-name">
+          本店卸睫
+          <span class="item-price free-tag">free</span>
+        </div>
+        <div class="item-desc">於本店進行嫁接後之卸除服務，免費提供</div>
+      </div>
+    </div>
+
+    <div class="price-item">
+      <div class="item-marker purple"></div>
+      <div class="item-body">
+        <div class="item-name">
+          他店卸睫
+          <span class="item-price">$200</span>
+        </div>
+        <div class="item-desc">非本店嫁接之睫毛卸除服務</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MEMBER ── -->
+  <div id="panel-member" class="panel">
+    <div class="section-header">
+      <div class="section-label">Membership</div>
+      <h2 class="section-title">儲值會員</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-amount"><span>儲值</span>$5,000</div>
+      <div class="member-bonus">
+        <div class="bonus-label">贈送</div>
+        <div class="bonus-amount">+ $300</div>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-amount"><span>儲值</span>$10,000</div>
+      <div class="member-bonus">
+        <div class="bonus-label">贈送</div>
+        <div class="bonus-amount">+ $800</div>
+      </div>
+    </div>
+
+    <div class="member-note">
+      <div class="note-title">儲值會員須知</div>
+      <ul class="note-list">
+        <li>儲值金限本人使用</li>
+        <li>儲值金使用期限為 2 年</li>
+        <li>不接受退款</li>
+        <li style="color:rgba(201,169,110,0.4);font-size:11px">本店保有最終解釋權</li>
+      </ul>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="handle">@fairlady.eyelash</div>
+  <div class="designer-tag">designer Tienhsin</div>
+</footer>
+
+<script>
+  function showTab(name) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + name).classList.add('active');
+    event.currentTarget.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
